@@ -1,6 +1,6 @@
 // import StylesCheck from "./StylesCheck";
 import ClassComponent from "./ClassComponent";
-// import FuncComponent from "./FuncComponent";
+import FuncComponent from "./FuncComponent";
 import "./styles.scss";
 import "./writeStylesHere.scss";
 
@@ -13,11 +13,11 @@ export default function App() {
     <div className="App">
       {/* <StylesCheck name="Aditee" devs={devs} /> */}
       <ClassComponent name="Aditee" devs={devs} />
-      {/* <FuncComponent
+      <FuncComponent
         name="Aditee"
         handleDevRemoval={handleDevRemoval}
         devs={devs}
-      /> */}
+      />
     </div>
   );
 }

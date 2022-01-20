@@ -6,7 +6,7 @@ export default class ClassComponent extends React.Component {
     super(props);
     this.state = {
       initialName: this.props.name,
-      newName: undefined
+      updatedName: undefined
     };
     this.timer = null;
     this.handleNameUpdate = this.handleNameUpdate.bind(this);
@@ -23,7 +23,7 @@ export default class ClassComponent extends React.Component {
           ]
         });
       }
-    }, 5000);
+    }, 2000);
   }
 
   // How can we clean up after this component unmounts?
@@ -33,7 +33,7 @@ export default class ClassComponent extends React.Component {
 
   // How do we access this in our method?
   handleNameUpdate(e) {
-    this.setState({ updatedName: e.target.value }, () => {});
+    this.setState({ updatedName: e.target.value });
   }
 
   render() {
@@ -43,7 +43,10 @@ export default class ClassComponent extends React.Component {
       /* How do we fix this without outputing any more elements? */
       <>
         <h1>
-          Hello{this.state.updatedName ? `, ${this.state.updatedName}` : null}
+          Hello
+          {this.state.updatedName
+            ? `, ${this.state.updatedName}`
+            : `, ${this.state.initialName}`}
         </h1>
 
         <input onChange={this.handleNameUpdate} />
@@ -51,7 +54,7 @@ export default class ClassComponent extends React.Component {
           {
             /* What prop required here for react to track changes? */
             this.props.devs.map((element, index) => (
-              <li>{element}</li>
+              <li key={`${element}-${index}`}>{element}</li>
             ))
           }
         </ul>
