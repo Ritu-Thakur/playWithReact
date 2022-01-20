@@ -26,6 +26,18 @@ export default class ClassComponent extends React.Component {
     }, 2000);
   }
 
+  setIntervalAgain() {
+    this.timer = setInterval(() => {
+      if (this.state.updatedName === undefined) {
+        this.setState({
+          initialName: this.props.devs[
+            Math.floor(Math.random() * this.props.devs.length)
+          ]
+        });
+      }
+    }, 2000);
+  }
+
   // How can we clean up after this component unmounts?
   componentWillUnmount() {
     clearInterval(this.timer);
@@ -34,6 +46,11 @@ export default class ClassComponent extends React.Component {
   // How do we access this in our method?
   handleNameUpdate(e) {
     this.setState({ updatedName: e.target.value });
+    if (e.target.value === "") {
+      clearInterval(this.timer);
+      this.setState({ updatedName: undefined });
+      this.setIntervalAgain();
+    }
   }
 
   render() {
