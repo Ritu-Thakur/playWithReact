@@ -12,23 +12,7 @@ const FuncComponent = ({ devs, name: initialName }) => {
       if (updatedName === undefined) {
         setName(devs[Math.floor(Math.random() * devs.length)]);
       }
-    }, 5000);
-    return () => clearInterval(timer.current);
-  }, []);
-  useEffect(() => {
-    timer.current = setInterval(() => {
-      if (updatedName === undefined) {
-        setName(devs[Math.floor(Math.random() * devs.length)]);
-      }
-    }, 5000);
-    return () => clearInterval(timer.current);
-  }, []);
-  useEffect(() => {
-    timer.current = setInterval(() => {
-      if (updatedName === undefined) {
-        setName(devs[Math.floor(Math.random() * devs.length)]);
-      }
-    }, 5000);
+    }, 2000);
     return () => clearInterval(timer.current);
   }, []);
 
