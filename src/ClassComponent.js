@@ -15,6 +15,10 @@ export default class ClassComponent extends React.Component {
   // What lifecycle method is needed to insure this is
   // only ran once when component mounts?
   componentDidMount() {
+    this.setInterval();
+  }
+
+  setInterval() {
     this.timer = setInterval(() => {
       if (this.state.updatedName === undefined) {
         this.setState({
@@ -34,6 +38,11 @@ export default class ClassComponent extends React.Component {
   // How do we access this in our method?
   handleNameUpdate(e) {
     this.setState({ updatedName: e.target.value });
+    if (e.target.value === "") {
+      clearInterval(this.timer);
+      this.setState({ updatedName: undefined });
+      this.setInterval();
+    }
   }
 
   render() {
